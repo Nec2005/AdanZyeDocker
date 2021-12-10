@@ -9,7 +9,11 @@
 9: Bu containerların çalıştığını kontrol edin ve ardından çalışıyor haldeyken bunları silin. 
 10: Terminalde eğitim klasörünün altındaki kisim4/bolum43 klasörüne geçin. 
 11: ozgurozturknet/webkayit imajından websrv adinda detached bir container yaratın. "alistirma-agi" networküne bağlı olsun. Maksimum 2 logical cpu kullanacak şekilde kısıtlansın. 80 portunu host üstündeki 80 portuyla publish edin. env.list dosyasının bu containera enviroment variable olarak aktarılmasını sağlayın. 
+C:/> docker container run -d --network alistirma-agi --cpuset-cpus="0,1" -p 80:80 --env-file .\env.list --name websrv ozgurozturknet/webkayit
+
 12: ozgurozturknet/webdb imajından mysqldb adinda detached bir container yaratın. "alistirma-agi" networküne bağlı olsun. Maksimum 1gb memory kullanacak şekilde kısıtlansın. envmysql.list dosyasının bu containera enviroment variable olarak aktarılmasını sağlayın. 
+docker container run -d --memeory=1gb --name mysql --env-file .\envmysql.list ozgurozturknet/webdb
+
 13: mysqldb containerının loglarını kontrol ederek düzgün şekilde başlatılabildiğini teyit edin. 
 14: Browser'dan websrv container'ının yayınladığı web sitesine bağlanın. Karşınıza çıkan formu doldurup bir tane jpg dosyayı da seçerek add tuşuna basın. Ardından kayitlari gör diyerek işlemin başarılı olduğunu teyit edin. 
 15: Oluşturduğunuz containerları ve alistirma-agi'ni silin.
